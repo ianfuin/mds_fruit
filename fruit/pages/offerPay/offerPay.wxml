@@ -1,0 +1,30 @@
+<!--pages/offerPay/offerPay.wxml-->
+<view class='w-620 px-40 h-110 bc-white margin-auto radius-10 b mt-20 between middle'>
+  <view>消费总额：</view>
+  <input type="number" class='text-right' placeholder='询问服务员后输入'></input>
+</view>
+
+<view class='px-30 ml-10 lh-70 fs-28 fc-o'>买单仅限于到店支付，请和服务员确认金额后提交</view>
+
+<view class='bc-white h-88 px-30 middle between'>
+  <view>每满100减10元</view>
+  <view class='h-88 middle'>
+    <view class='mr-20'>-￥10.00</view>
+    <icon size='18' type="circle" class='h-36' color='#fed458' />
+    <icon size='18' class='pulse animated h-36' type="success" color='#fed458' />
+  </view>
+</view>
+<!--满减  -->
+
+<view class='bc-white between middle h-88 bb mt-20 px-30'>
+  <view>优惠券</view>
+  <view class='fend middle'>
+    <view>-￥10.00</view>
+    <image class='left_icon ml-30' src='/images/left_icon.png'></image>
+  </view>
+</view>
+<view class='bc-white lh-110 text-right px-30'>
+  实付金额：<text class='fc-o'> <text class='fs-24'>¥ </text>130<text class='fs-24'>.00</text></text>
+</view>
+
+<button disabled='true' class='bc-o w-690 margin-auto lh-88 fc-white mt-30 radius-6' >确认付款</button>

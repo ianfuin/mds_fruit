@@ -1,0 +1,135 @@
+<!--pages/confirmOrder/confirmOrder.wxml-->
+<view class='mb-20 bc-white'>
+
+  <view catchtap="myAddress" class='between middle px-30 py-40'>
+    <image class='w-38 h-46 shrink' src='/images/address_icon.png'></image>
+    <view wx:if="{{address == null}}" class='w-all text-center'>您还没有默认的联系方式，前往设置</view>
+    <view wx:if="{{address != null}}" class='w-all px-30'>
+      <view class="between pb-20 fs-34">
+        <view>{{address.userNameAddr}}</view>
+        <view>{{address.telephone}}</view>
+      </view>
+      <view class='fs-26'>{{address.province}}{{address.city}}{{address.area}}{{address.detailAddr}}</view>
+    </view>
+    <image class='w-10 h-20 ml-20 shrink' src='/images/left_icon.png'></image>
+  </view>
+  <!--商家配送 -->
+
+  <block wx:if="">
+    <view class='bb pxy-30 between middle'>
+      <view>
+        <view class='fs-34'>
+          <view class='between pb-30'>
+            <view>取货人：张三</view>
+            <view>18888889965</view>
+          </view>
+          <view>取货时间：（下单后24小时内）</view>
+        </view>
+        <view class='fs-20 fc-r'>请您在24小时内到店自取商品。如超时或有特殊情况请与商家沟通。</view>
+      </view>
+      <image class='w-10 h-20 ml-20 shrink' src='/images/left_icon.png'></image>
+    </view>
+    <view class='h-110 px-30 middle'>
+      <image class='w-38 h-46 shrink mr-30' src='/images/address_icon.png'></image>
+      <view class='fs-26'>店铺地址：浙江省宁波市江北区红昂街道长兴路1号 丰华企业6号楼3楼6310</view>
+    </view>
+  </block>
+  <!--到店自取  -->
+
+  <image class='h-12 w-all block' src='/images/colorLine.png'></image>
+</view>
+<!--地址信息  -->
+
+<view class='bc-white px-30'>
+  <view class='fs-34 lh-110 bb'>订单详情</view>
+  <block wx:for="{{carData.shopCarList}}" wx:key="">
+    <view class='flex bc-white py-20 bb'>
+      <image class='mr-30 wh-150 shrink' mode='aspectFill' src='{{imgUrl+item.productImg}}'></image>
+      <view class='w-all'>
+        <view class='fs-26 font-bold line-1'>{{item.productName}}</view>
+        <view class='fs-26 fc-999 line-1'>{{item.remark}}</view>
+        <view class='flex between pt-20 middle'>
+          <view class='fs-30 fc-o'>
+            <text class='fs-20'>￥</text>
+            <text>{{item.realPrice}}</text>
+            <text class='fs-20'>.00</text>
+          </view>
+          <view class='fs-22'>数量 X{{item.quantity}}</view>
+        </view>
+      </view>
+    </view>
+    <!--订单信息  -->
+  </block>
+
+  <view class='h-110 between middle bb'>
+    <view>收货方式</view>
+    <view class='middle'>
+      <picker bindchange="chooseReceiving" value="{{receivingIndex}}" range="{{receiving }}">
+        <view class="picker">
+          {{receiving[receivingIndex]}}
+        </view>
+      </picker>
+      <image class='w-10 h-20 ml-20' src='/images/left_icon.png'></image>
+    </view>
+  </view>
+  <!--收货方式  -->
+
+  <view class='h-110 between bb middle' catchtap='showCoupon'>
+    <view>店铺优惠</view>
+    <view class='middle'>
+      <view>{{couponIndex == -1?'不使用优惠':couponList[couponIndex].text}}</view>
+      <image class='w-10 h-20 ml-20' src='/images/left_icon.png'></image>
+    </view>
+  </view>
+  <!--店铺优惠  -->
+
+  <view class='h-110 between middle bb'>
+    <view class='shrink mr-30'>买家留言:</view>
+    <input maxlength='45' class='w-all fs-30' placeholder='选填：对本次交易的说明（45字内）'></input>
+  </view>
+  <!--买家留言  -->
+
+  <view class='lh-110 text-right'>
+    共1件商品 小计：
+    <text class='fs-24 fc-o'>¥ </text>
+    <text class='fs-34 fc-o'>640</text>
+    <text class='fs-24 fc-o'>.00</text>
+  </view>
+  <!--小计  -->
+</view>
+<!--订单详情  -->
+<view class='h-100'></view>
+<view style="z-index:1" class='fixed lb-0 w-all between lh-100 bc-white bt'>
+  <view class='w-all text-right'>
+    合计：
+    <text class='fs-24 fc-o'>¥ </text>
+    <text class='fs-34 fc-o'>640</text>
+    <text class='fs-24 fc-o'>.00</text>
+  </view>
+  <button class="shrink w-220 {{address === null?'bc-f2f2f2 fc-ddd':'bc-o'}} fc-white ml-30" catchtap='saveOrder'>微信支付</button>
+</view>
+<!--微信支付  -->
+
+<view style="{{showCoupon?'bottom:0':'bottom:-800rpx'}};z-index:10" class='w-all transition bc-white fixed'>
+  <view class='lh-100 px-20'>店铺优惠</view>
+  <view class='px-20 h-500 of-auto'>
+    <view wx:for="{{couponList}}" class='between middle h-100 bb' catchtap='chooseCoupon' data-index="{{index}}">
+      <view>{{item.text}}</view>
+      <view class='h-all w-100 center middle'>
+        <icon hidden="{{couponIndex == index}}" size='18' class='h-36' type="circle" color='#fed458' />
+        <icon hidden="{{couponIndex != index}}" size='18' class='pulse animated h-36' type="success" color='#fed458' />
+      </view>
+    </view>
+    <view class='between middle h-100' catchtap='chooseCoupon' data-index="-1">
+      <view>不使用优惠</view>
+      <view class='h-all w-100 center middle'>
+        <icon hidden="{{couponIndex == -1}}" size='18' class='h-36' type="circle" color='#fed458' />
+        <icon hidden="{{couponIndex != -1}}" size='18' class='pulse animated h-36' type="success" color='#fed458' />
+      </view>
+    </view>
+  </view>
+  <button class='lh-100 text-center fc-o bc-white bt' catchtap='showCoupon'>关闭</button>
+</view>
+<!--店铺优惠  -->
+
+<view catchtap='showCoupon' hidden='{{!showCoupon}}' style='top:0;background-color:rgba(0,0,0,0.5)' class='fixed w-all h-all animated fadeIn'></view>

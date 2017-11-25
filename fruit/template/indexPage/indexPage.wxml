@@ -1,0 +1,245 @@
+<scroll-view style='height:{{windowHeight}}px' enable-back-to-top bindscroll="scrollView" scroll-top="{{scrollTop}}" scroll-y="{{scrollY}}"
+  scroll-with-animation>
+  <view class='animated fadeIn'>
+    <view class='flex around py-20 bc-white' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend">
+      <image mode='aspectFit' class='wh-64' src='/images/logo.png' catchtap='clickLogo'></image>
+      <view class='h-64 w-580 fc-999 flex middle center bc-e5e5e5 radius-30' catchtap='clickSearch'>
+        <image mode='aspectFill' class='wh-32' src='/images/search.png'></image>
+        <text class='ml-30'>请输入关键词搜索</text>
+      </view>
+    </view>
+    <!--搜索  -->
+
+    <view class='animated fadeIn' wx:if="{{indexSwiperImg.length >0}}">
+      <swiper style='height:370rpx' indicator-dots indicator-active-color="#fff" interval="5000" duration="1500" autoplay circular>
+        <block wx:for="{{indexSwiperImg}}" wx:key="">
+          <swiper-item>
+            <image class='w-all' mode='aspectFill' src='{{imgUrl}}{{item.posterImg}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!--轮播图片-->
+
+    <view class='animated fadeIn' wx:if="{{indexSwiperText.length >0}}">
+      <view class='mb-20'>
+        <view class='flex h-84 middle around px-30 bc-white py-10'>
+          <view class='w-all h-all middle text-center' catchtap='notice'>
+            <image class='w-30 h-28' mode='aspectFill' src='/images/voice.png'></image>
+          </view>
+          <swiper interval="4000" duration="2000" autoplay circular vertical class='w-600 h-84 shrink'>
+            <block wx:for="{{indexSwiperText}}" wx:key="">
+              <swiper-item data-noticeid='{{item.noticeId}}' catchtap="clickIndexSwiperText">
+                <view class='line-1 lh-84'>{{item.title}}</view>
+              </swiper-item>
+            </block>
+          </swiper>
+          <!-- 滑块视图容器  -->
+        </view>
+      </view>
+    </view>
+    <!--轮播公告-->
+
+    <view class='animated fadeIn' wx:if="{{indexCouponList.length >0}}">
+      <view class='mb-20 bc-white'>
+        <view class='text-center pt-20 bc-white pb-10'>小程序专享优惠券</view>
+        <view class='py-20 of-auto'>
+          <view class='flex swiper px-30 relative' style='width:{{200*indexCouponList.length}}rpx'>
+            <block wx:for="{{indexCouponList}}" wx:key="">
+              <view data-index='{{index}}' catchtap="receiveCoupons" class='relative w-290 h-120'>
+                <image class='w-290 h-120' src='/images/coupon0.png'></image>
+                <view class='absolute between w-all h-all lt-0'>
+                  <view class='middle margin-auto'>
+                    <view wx:if="{{item.couponType == 0}}">
+                      <text class='fs-20'>￥</text>
+                      <text class='fs-40'>{{item.specialPrice}}</text>
+                    </view>
+                    <view wx:if="{{item.couponType == 1}}">
+                      <text class='fs-40'>{{item.percentage}}</text>
+                      <text class='fs-20'>折</text>
+                    </view>
+                    <view class='lh-28 text-center pl-10'>
+                      <view class='fs-20'>优惠券</view>
+                      <view class='fs-12'>满{{item.fullPrice}}可用</view>
+                    </view>
+                  </view>
+                  <view class='fs-20 lh-30 w-120 center middle'>
+                    <view>
+                      <view>立即</view>
+                      <view>领取</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--优惠券  -->
+
+    <view class='animated fadeIn' wx:if="{{indexDailySpecials.length > 0}}">
+      <view class='h-84 flex px-30 bc-white middle'>
+        <view class='h-40 w-10 bc-b6de16 mr-10'></view>
+        <view class='font-bold' style='letter-spacing:20rpx;'>每日特价</view>
+      </view>
+      <view class='py-20 bc-white of-auto'>
+        <view class='flex swiper px-30 relative' style='width:{{200*indexDailySpecials.length}}rpx'>
+          <block wx:for="{{indexDailySpecials}}" wx:key=""  >
+            <view class='card-y shrink' catchtap="goodsDetail" data-id="{{item.productId}}" >
+              <view class='fs-32 fc-o text-right font-bold'>￥{{item.realPrice}}.00</view>
+              <view class='fs-20 fc-b td-through text-right pb-10'>￥{{item.fakePrice}}</view>
+              <image mode='aspectFill' class='h-220 w-all' src='{{imgUrl}}{{item.productImg}}'></image>
+              <view class='fs-32 text-center pt-20 font-bold'>{{item.productName}}</view>
+              <view class='fs-22 fc-999 text-center pb-10'>{{item.remark}}</view>
+              <view wx:if="{{!flag}}" class='btn-mini pulse animated' catchtap='showColum' data-id="{{item.productId}}">加入购物车</view>
+              <view wx:if="{{flag}}" class='flex middle around px-30 flipInX animated'>
+                <image catchtap='showColum' class='wh-40' src='/images/reduce.png'></image>
+                <view>1</view>
+                <image catchtap='showColum' class='wh-40' src='/images/add.png'></image>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!--每日特价  -->
+
+    <view class='animated fadeIn' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend" wx:if="{{indexDailyFresh.length > 0}}">
+      <view class='relative'>
+        <image class='w-all h-300 block' mode='aspectFill' src='/images/test1.jpg'></image>
+        <view class='triangle'></view>
+      </view>
+      <view class='h-84 flex px-30 bc-white middle'>
+        <view class='h-40 w-10 bc-b6de16 mr-10'></view>
+        <view class='font-bold' style='letter-spacing:20rpx;'>每日特鲜</view>
+      </view>
+      <view class='pb-20 bc-white'>
+        <block wx:for="{{indexDailyFresh}}" wx:key="">
+          <view class='flex pxy-20 h-210 w-680 radius-10 margin-auto shadow-2 mb-20' catchtap="goodsDetail" data-id="{{item.productId}}">
+            <image class='mr-30' style='height:210rpx;width:230rpx' mode='aspectFill' src='{{imgUrl}}{{item.productImg}}'></image>
+            <view class='w-430'>
+              <view class='pt-20'>
+                <view class='fs-30 font-bold line-1'>{{item.productName}}
+                </view>
+                <view class='fs-22 fc-999 line-1'>{{item.remark}}</view>
+              </view>
+              <view class='flex between pt-30 middle'>
+                <view>
+                  <view class='fs-30 fc-o'>￥{{item.realPrice}}</view>
+                  <view class='fs-20'>{{item.spec}}</view>
+                </view>
+                <image wx:if="{{!flag}}" class='wh-66 swing animated' src='/images/ycar.png' catchtap='showColum' data-id="{{item.productId}}"></image>
+                <view wx:if="{{flag}}" class='flex middle around flipInX animated w-220'>
+                  <image catchtap='showColum' class='wh-40' src='/images/reduce.png'></image>
+                  <view>1</view>
+                  <image catchtap='showColum' class='wh-40' src='/images/add.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!--每日特鲜  -->
+
+    <view class='animated fadeIn' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend" wx:if="{{indexGroupBuy.length > 0}}">
+      <view class='relative'>
+        <image class='w-all h-300 block' mode='aspectFill' src='/images/test1.jpg'></image>
+        <view class='triangle'></view>
+      </view>
+      <view class='h-84 flex px-30 bc-white middle'>
+        <view class='h-40 w-10 bc-b6de16 mr-10'></view>
+        <view class='font-bold' style='letter-spacing:20rpx;'>大家都在团</view>
+      </view>
+      <view class='pb-20 bc-white'>
+        <block wx:for="{{indexGroupBuy}}" wx:key="">
+          <view class='flex pxy-20 h-210 w-680 radius-10 margin-auto shadow-2 mb-20' catchtap="goodsDetail" data-id="{{item.productId}}">
+            <image class='mr-30' style='height:210rpx;width:230rpx' mode='aspectFill' src='/images/swiper.jpg'></image>
+            <view class='w-430'>
+              <view class='pt-20'>
+                <view class='fs-30 font-bold line-1'>A级-红钻软籽甜石榴（中）</view>
+                <view class='fs-22 fc-999 line-1'>颗粒颜值高，籽能嚼着吃</view>
+              </view>
+              <view class='pt-10'>
+                <text class='fs-30 fc-o'>￥29.8</text>
+                <text class='fs-20'>1000-1100g(2个)</text>
+              </view>
+              <view class='bc-y text-center w-170 lh-50 radius-4'>去开团</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!--大家都在团  -->
+
+    <view class='animated fadeIn' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend" wx:if="{{indexSpike.length > 0}}">
+      <view class='relative'>
+        <image class='w-all h-300 block' mode='aspectFill' src='/images/test1.jpg'></image>
+        <view class='triangle'></view>
+      </view>
+      <view class='h-84 flex px-30 bc-white middle'>
+        <view class='h-40 w-10 bc-b6de16 mr-10'></view>
+        <view class='font-bold' style='letter-spacing:20rpx;'>限时秒杀</view>
+        <view class='flex middle'>
+          <view class='relative w-52 h-40 fc-white middle center'>
+            <view class='absolute lt-0'>
+              <image class='w-26 h-40' src='/images/timer.png'></image>
+              <image class='w-26 h-40' src='/images/timer.png'></image>
+            </view>
+            <view style='letter-spacing:12rpx;margin-left:12rpx' class='fc-white fs-24 z-1'>{{time.hour}}</view>
+          </view>
+          <view class='mb-10'>:</view>
+          <view class='relative w-52 h-40 fc-white middle center'>
+            <view class='absolute lt-0'>
+              <image class='w-26 h-40' src='/images/timer.png'></image>
+              <image class='w-26 h-40' src='/images/timer.png'></image>
+            </view>
+            <view style='letter-spacing:12rpx;margin-left:12rpx' class='fc-white fs-24 z-1'>{{time.minutes}}</view>
+          </view>
+          <view class='mb-10'>:</view>
+          <view class='relative w-52 h-40 fc-white middle center'>
+            <view class='absolute lt-0'>
+              <image class='w-26 h-40' src='/images/timer.png'></image>
+              <image class='w-26 h-40' src='/images/timer.png'></image>
+            </view>
+            <view style='letter-spacing:12rpx;margin-left:12rpx' class='fc-white fs-24 z-1'>{{time.seconds}}</view>
+          </view>
+        </view>
+        <!--倒计时  -->
+      </view>
+      <view class='pb-20 bc-white'>
+        <block wx:for="{{indexSpike}}" wx:key="">
+          <view class='flex pxy-20 h-210 w-680 radius-10 margin-auto shadow-2 mb-20' catchtap="goodsDetail" data-id="{{item.productId}}">
+            <image class='mr-30' style='height:210rpx;width:230rpx' mode='aspectFill' src='/images/swiper.jpg'></image>
+            <view class='w-430'>
+              <view class='pt-20'>
+                <view class='fs-30 font-bold line-1'>A级-红钻软籽甜石榴（中）</view>
+                <view class='fs-22 fc-999 line-1'>颗粒颜值高，籽能嚼着吃</view>
+              </view>
+              <view class='flex between pt-30 middle'>
+                <view>
+                  <view class='fs-30 fc-o'>￥29.8</view>
+                  <view class='fs-20'>1000-1100g(2个)</view>
+                </view>
+                <image wx:if="{{!flag}}" class='wh-66 swing animated' src='/images/ycar.png'  catchtap='showColum' data-id="{{item.productId}}"></image>
+                <view wx:if="{{flag}}" class='flex middle around flipInX animated w-220'>
+                  <image catchtap='showColum' class='wh-40' src='/images/reduce.png'></image>
+                  <view>1</view>
+                  <image catchtap='showColum' class='wh-40' src='/images/add.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!--限时秒杀  -->
+
+    <view class='h-110'></view>
+  </view>
+</scroll-view>
+
+
+<image catchtap='scrollTop' hidden='{{!showScrollTop}}' style='bottom:20%;right:4%;' class='wh-80 fixed bounceIn animated'
+  src='/images/backTop.png'></image>

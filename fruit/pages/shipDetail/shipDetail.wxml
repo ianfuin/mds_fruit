@@ -1,0 +1,37 @@
+<!--pages/shipDetail/shipDetail.wxml-->
+
+<view class='bc-white flex px-20 py-40 mb-20'>
+  <view class='relative'>
+    <image class='wh-146 block' mode='aspectFill' src='{{imgUrl}}{{orderdetails[0].productImg}}'></image>
+    <view style='bottom:0;background:rgba(0,0,0,0.5)' class='absolute fs-26 fc-white w-all text-center lh-40'>{{orderdetails.length}}件商品</view>
+  </view>
+  <view class='fs-26 ml-20 pt-10'>
+    <view>承运公司：百世快递</view>
+    <view>运单编号：{{wlnum}}</view>
+    <view>官方电话：暂无</view>
+  </view>
+</view>
+<!--物流商品 -->
+
+<view class='bc-white py-40'>
+  <view class='animated fadeIn' wx:if="{{wlData != null}}" wx:for="{{wlData}}" wx:key="">
+    <view class='bl ml-40 pl-40 pr-20 pb-20 relative {{index==0?"fc-o":"fc-999"}}'>
+      <view wx:if="{{!item.havePhone}}">
+        <view class='fs-28'>{{item.acceptStation}}</view>
+        <view class='fs-22'>{{item.acceptTime}}</view>
+      </view>
+      <view class='fs-28' wx:if="{{item.havePhone}}">
+        <text>{{item.acceptStation[0]}}</text>
+        <text catchtap='makePhone' data-phone='{{item.acceptStation[1]}}' class='fc-o td-underline'>{{item.acceptStation[1]}}</text>
+        <text>{{item.acceptStation[2]}}</text>
+        <view class='fs-22'>{{item.acceptTime}}</view>
+      </view>
+      <view class='bb mt-20'></view>
+      <view style='top:10rpx;left:-8rpx;z-index:4' class='wh-20 bc-ddd radius-full absolute'></view>
+      <view wx:if="{{index==0}}" style='top:-8rpx;left:-12rpx;z-index:2' class='wh-30 bc-white radius-full absolute'></view>
+      <view wx:if="{{index==0}}" style='top:10rpx;left:-10rpx;z-index:4;box-shadow: 0 0 20rpx #fea00b' class='wh-24 bc-o radius-full absolute'></view>
+    </view>
+  </view>
+  <view class='text-center fc-999' wx:if="{{wlData.length == 0}}">暂无物流信息</view>
+  <view wx:if="{{wlData == null}}" style='z-index:-1' class='loading bc-y'></view>
+</view>

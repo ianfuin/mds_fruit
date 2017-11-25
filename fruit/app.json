@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mds/mds",
+    "pages/shipDetail/shipDetail",
+    "pages/goodsDetail/goodsDetail",
+    "pages/groupbuy/groupbuy",
+    "pages/confirmOrder/confirmOrder",
+    "pages/notice/notice",
+    "pages/noticeDetail/noticeDetail",
+    "pages/myOrder/myOrder",
+    "pages/orderDetail/orderDetail",
+    "pages/myAddress/myAddress",
+    "pages/offerPay/offerPay",
+    "pages/coupon/coupon",
+    "pages/search/search",
+    "pages/AddressDetail/AddressDetail"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fed458",
+    "navigationBarTitleText": "水果超市",
+    "navigationBarTextStyle": "black"
+  }
+}

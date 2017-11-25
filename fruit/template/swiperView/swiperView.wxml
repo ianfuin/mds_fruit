@@ -1,0 +1,12 @@
+<template name="swiperView">
+  <view class='bc-white py-20 of-auto'>
+    <view class='flex swiper px-30 relative' style='width:{{200*6}}rpx;right:{{right}}px'>
+      <view class='w-200 h-100 bc-r'></view>
+      <view class='w-200 h-100 bc-r'></view>
+      <view class='w-200 h-100 bc-r'></view>
+      <view class='w-200 h-100 bc-r'></view>
+      <view class='w-200 h-100 bc-r'></view>
+      <view class='w-200 h-100 bc-r'></view>
+    </view>
+  </view>
+</template>

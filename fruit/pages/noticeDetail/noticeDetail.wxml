@@ -1,0 +1,10 @@
+<!--pages/noticeDetail/noticeDetail.wxml-->
+<view wx:if="{{noticeDetail}}" class='px-30 animated fadeIn'>
+  <view class='fs-48 py-40 lh-60'>{{noticeDetail.title}}</view>
+  <view class='fc-999 pb-30'>{{noticeDetail.createTime}}</view>
+
+  <import src="../../wxParse/wxParse.wxml" />
+  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</view>
+
+<view wx:if="{{!noticeDetail}}" style='z-index:-1' class='loading bc-y'></view>

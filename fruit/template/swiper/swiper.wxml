@@ -1,0 +1,34 @@
+<!--swiper_img  -->
+<template name="swiper_img">
+  <view class='swiper-box'>
+    <swiper style='height:{{swiperData.height}}rpx' indicator-dots interval="5000" duration="1500" autoplay circular bindchange="swiperChange">
+      <block wx:for="{{swiperImg}}" wx:key="">
+        <swiper-item>
+          <image class='w-all' mode='aspectFill' src='/images/swiper.jpg'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 滑块视图容器  -->
+    <!--<view class="dots">
+      <block wx:for="{{swiperImg}}" wx:key="">
+        <view style='background-color:{{swiperData.current == index?swiperData.selectColor:swiperData.color}}' class="dot"></view>
+      </block>
+    </view>-->
+    <!-- 面板指示点  -->
+  </view>
+</template>
+
+
+<!--swiper_text  -->
+<template name="swiper_text">
+  <view class='flex h-84 middle around px-30 bc-white py-10'>
+    <image class='w-30 h-28' mode='aspectFill' src='/images/voice.png'></image>
+
+    <swiper interval="4000" duration="2000" autoplay circular vertical class='w-600 h-84'>
+      <swiper-item wx:for="{{swiperText}}" wx:key="">
+        <view class='line-1 lh-84'>西瓜西瓜今天半价，活动在今天下午16 : 00结束，抓紧时间抓紧时间抓紧时间抓紧时间抓紧时间</view>
+      </swiper-item>
+    </swiper>
+    <!-- 滑块视图容器  -->
+  </view>
+</template>

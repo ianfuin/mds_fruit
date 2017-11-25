@@ -1,0 +1,11 @@
+<!--pages/notice/notice.wxml-->
+<view class='animated fadeIn' wx:if="{{noticeList.length > 0}}">
+
+  <block wx:for="{{noticeList}}" wx:key="">
+    <view class='h-480 w-720 margin-auto bc-white mt-20 of-hidden radius-6 shadow-lb' data-noticeId="{{item.noticeId}}" catchtap='noticeDetail'>
+      <image mode='aspectFill' class='h-370 w-720' src='{{imgUrl}}{{item.noticeImg}}'></image>
+      <view class='lh-110 line-1 px-30'>{{item.title}}</view>
+    </view>
+  </block>
+
+</view>

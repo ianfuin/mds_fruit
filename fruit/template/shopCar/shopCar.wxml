@@ -1,0 +1,66 @@
+<scroll-view scroll-y="{{scrollY}}" style='height:{{windowHeight}}px' bindscroll="scrollView">
+  <view wx:if="{{shopData != null}}" class='animated fadeIn' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend">
+
+    <block wx:if="{{shopData.shopCarList.length != 0}}" wx:for="{{shopData.shopCarList}}" wx:key="">
+      <view class='relative bc-white bt animated fadeIn'>
+        <view class='flex h-180 middle py-30'>
+          <view class='text-center w-80 h-180 flex middle center' data-index='{{index}}' catchtap='chooseShopCar'>
+            <icon hidden="{{item.chooseFlag}}" size='18' type="circle" color='#fed458' />
+            <icon hidden="{{!item.chooseFlag}}" size='18' class='pulse animated' type="success" color='#fed458' />
+          </view>
+          <image catchtap="goodsDetail" data-id="{{item.productId}}" class='block wh-180 mr-20' mode='aspectFill' src='{{imgUrl}}{{item.productImg}}'></image>
+          <view class='w-440'>
+            <view class='fs-26 line-1'>{{item.productName}}</view>
+            <view class='fs-26 fc-999 line-1'>10个1000g起</view>
+            <view class='flex between pt-30'>
+              <view class='fc-o'>
+                <text class='fs-20'>¥ </text>
+                <text class='fs-28'>{{item.price}}</text>
+                <text class='fs-20'>.00</text>
+              </view>
+              <view class='flex middle between flipInX animated w-220'>
+                <image catchtap='changeShopCar' data-index="{{index}}" data-flag='-1' class='wh-40' src='/images/reduce.png'></image>
+                <view class='w-140 text-center'>{{item.carNum}}</view>
+                <image catchtap='changeShopCar' data-index="{{index}}" data-flag='1' class='wh-40' src='/images/add.png'></image>
+              </view>
+            </view>
+          </view>
+
+        </view>
+        <image wx:if="{{item.spike == 1}}" class='spike' src='/images/spike.png'></image>
+        <!--秒杀  -->
+      </view>
+      <!--购物车列表  -->
+    </block>
+    <!--购物车列表  -->
+    <view wx:if="{{shopData.shopCarList.length == 0}}" class='text-center' style='padding-top:30%'>
+      <image class='wh-280 margin-auto' mode='aspectFit' src='/images/nogoods0.png'></image>
+      <view class='font-28 text-center py-60'>购物车空空如也</view>
+      <view class='bc-o w-220 lh-60 margin-auto radius-30 fs-28 fc-b'>随便逛逛</view>
+    </view>
+    <!--没有商品  -->
+
+    <view class='h-100'></view>
+    <view wx:if="{{shopData.shopCarList.length != 0}}" style='left:0;bottom:110rpx' class='flex middle h-100 bc-white fixed w-all between bt'>
+      <view class='ml-30 flex middle w-170 h-100' catchtap='chooseAll'>
+        <icon hidden="{{shopData.chooseAll}}" size='18' class='h-36' type="circle" color='#fed458' />
+        <icon hidden="{{!shopData.chooseAll}}" size='18' class='pulse animated h-36' type="success" color='#fed458' />
+        <view class='font-28 ml-10 lh-30'>{{shopData.chooseAll?'取消全选':'全选'}}</view>
+      </view>
+      <view class='text-right w-300 hall'>
+        <view class='pt-10'>
+          <text class='fs-28'>合计：</text>
+          <text class='fs-22 fc-o'>¥</text>
+          <text class='fc-o'> {{shopData.totalPrice}}</text>
+          <text class='fs-22 fc-o'>.00</text>
+        </view>
+        <view class='fs-20 fc-666'>不含运费</view>
+      </view>
+      <button disabled='{{!shopData.disabled}}' catchtap="singleBuy" class='bc-o fc-white hall w-220 text-center lh-100 ml-20'>结算</button>
+    </view>
+    <!--购物车底部  -->
+
+    <view class='h-110'></view>
+  </view>
+  <view wx:if="{{shopData == null}}" style='z-index:0' class='loading bc-y'></view>
+</scroll-view>

@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<web-view src="https://superprism.cn"></web-view>
+<!--侧滑栏 -->
+<include src="/template/sideBar/sideBar.wxml" />
+
+<!--底部导航栏 -->
+<include src="/template/tabBar/tabBar.wxml" />
+
+<block wx:if="{{initFlag}}">
+  <block wx:if="{{tabBar.list[0].lazyFlag}}">
+    <view class='bc-f4f4f4' hidden="{{tabBarIndex != 0}}">
+      <include src="/template/indexPage/indexPage.wxml" />
+    </view>
+    <!--首页  -->
+  </block>
+
+  <block wx:if="{{tabBar.list[1].lazyFlag}}">
+    <view class='bc-f4f4f4' hidden="{{tabBarIndex != 1}}">
+      <include src="/template/classPage/classPage.wxml" />
+    </view>
+    <!--分类  -->
+  </block>
+
+  <block wx:if="{{tabBar.list[2].lazyFlag}}">
+    <view class='bc-f4f4f4' hidden="{{tabBarIndex != 2}}">
+      <include src="/template/shopCar/shopCar.wxml" />
+    </view>
+    <!--购物车  -->
+  </block>
+
+  <block wx:if="{{tabBar.list[3].lazyFlag}}">
+    <view class='bc-f4f4f4' hidden="{{tabBarIndex != 3}}">
+      <include src="/template/mine/mine.wxml" />
+    </view>
+    <!--我的  -->
+  </block>
+
+</block>
+<view wx:if="{{!initFlag}}" style='z-index:-1' class='loading bc-y'></view>

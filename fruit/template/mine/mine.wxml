@@ -1,0 +1,91 @@
+<view class='animated fadeIn'>
+
+  <view class='w-all h-320 relative' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend">
+    <image class='w-all h-320' mode='aspectFill' src='/images/mine.png'></image>
+    <view class='absolute between middle w-all' style='left:0; top:0'>
+      <view class='middle h-320'>
+        <image class='wh-130 ml-40 radius-full head_border' mode='aspectFill' src='{{userInfo.avatarUrl}}'></image>
+        <view class='ml-20'>{{userInfo.nickName}}</view>
+      </view>
+      <view catchtap='offerPay' class='middle bc-white h-90 radius_left_50' style='right:0; top:50%'>
+        <image mode='aspectFill' class='wh-70 block' src='/images/pay_icon.png'></image>
+        <view class='fs-28'>优惠买单</view>
+        <image class='left_icon ml-10 mr-10' src='/images/left.png'></image>
+      </view>
+    </view>
+  </view>
+  <!--头像  -->
+
+  <view class='bc-white h-220 mb-20' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend">
+    <view class='h-86 bb between middle mx-20' catchtap='myOrder' data-index='0'>
+      <view class='fs-32'>我的订单</view>
+      <view class='fs-24 fc-999 end middle'>
+        <view>查看全部</view>
+        <image class='left_icon ml-30' src='/images/left_icon.png'></image>
+      </view>
+    </view>
+    <!--标题  -->
+    <view class='w-all flex around text-center fs-24'>
+      <block wx:for="{{navList}}" wx:key="">
+        <view class='relative' style='width:{{100/navList.length}}%' catchtap='myOrder' data-index='{{index}}'>
+          <image mode='aspectFill' src='/images/order{{index}}.png' class='wh-70 block margin-auto pt-10'></image>
+          <view>{{item.text}}</view>
+          <text style='top:10rpx;right:50rpx' class='absolute wh-34 fs-20 lh-30 middle center radius-full fc-white bc-r'>11</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!--我的订单  -->
+
+  <view class='bc-white mb-30'>
+    <view class='h-88 between px-30 middle' catchtap="coupon">
+      <view class='fs-32'>我的优惠券</view>
+      <view class='fs-24 fc-999 end middle'>
+        <view>查看全部</view>
+        <image class='left_icon ml-30' src='/images/left_icon.png'></image>
+      </view>
+    </view>
+    <!--标题  -->
+    <view wx:if="{{myCoupon.length > 0}}" class='middle titleList of-auto ml-20'>
+      <view class='relative animated fadeIn' wx:for="{{myCoupon}}" wx:key="">
+        <image class='h-120 w-334' mode='aspectFill' src='/images/coupon1.png'></image>
+        <view class='absolute h-120 w-334' style='left:0;top:0'>
+          <view style='left:32rpx;top:32rpx' class='relative'>
+            <text class='fs-12'>￥</text>400</view>
+          <view class='fs-20 pt-10 fc-white text-right lh-30 pr-16'>满700使用</view>
+          <view class='fs-20 fc-white text-right lh-30 pr-16'>有效期 2017.03.27-2017.03.29</view>
+        </view>
+      </view>
+      <!--满减  -->
+      <view class='relative'>
+        <image class='h-120 w-334' mode='aspectFill' src='/images/coupon1.png'></image>
+        <view class='absolute h-120 w-334' style='left:0;top:0'>
+          <view style='left:32rpx;top:32rpx' class='relative'>8.5
+            <text class='fs-24'>折</text>
+          </view>
+          <view class='fs-20 pt-16 fc-white text-right lh-30 pr-16'>满700使用</view>
+          <view class='fs-20 fc-white text-right lh-30 pr-16'>有效期 2017.03.27-2017.03.29</view>
+        </view>
+      </view>
+      <!--折扣  -->
+    </view>
+  </view>
+  <!--我的优惠券  -->
+
+  <view capture-bind:touchstart="touchstart" capture-bind:touchend="touchend">
+    <view catchtap='myAddress' class='bc-white h-88 pl-30 middle bb fs-28'>
+      <image class='w-30 h-40 mr-20' src='/images/address.png'></image>
+      <view>地址管理</view>
+    </view>
+    <!--地址管理  -->
+    <button open-type='contact' class='bc-white h-88 pl-30 middle fs-28'>
+      <image class='w-30 h-40 mr-20' src='/images/kefu.png'></image>
+      <view>在线客服</view>
+    </button>
+    <!--在线客服  -->
+  </view>
+
+  <view catchtap='mds' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend" class='fs-24 fc-b2b2b2 text-center w-all py-30'>超级棱镜提供技术支持superprism.cn</view>
+  <!--打标  -->
+  <view class='h-110'></view>
+</view>

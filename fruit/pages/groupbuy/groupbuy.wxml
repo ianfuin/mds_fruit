@@ -1,0 +1,54 @@
+<!--pages/groupbuy/groupbuy.wxml-->
+<!-- 引入轮播图 -->
+<import src="../../template/swiper/swiper.wxml" />
+<template is='swiper_img' data="{{swiperList:swiperList,swiperData:swiperData}}" />
+<!-- 引入横向轮播 -->
+
+<view class='w-710 mb-20 relative shadow-2 margin-auto radius-4'>
+  <view class='between middle pt-50 pl-20'>
+    <view class='fw-bold fs-36'>A级-红钻软籽甜石榴（中）</view>
+    <view class='fs-26 lh-60 bc-o fc-white pr-20 pl-40 radius_left_40'>2人团</view>
+  </view>
+  <view class='fs-32 py-20 px-20 '>10个1000g起</view>
+  <view class='fs-22 fc-999 pb-20 px-20 '>颗粒颜值高，籽能嚼着吃</view>
+  <view class='between px-20  pb-20'>
+    <view>
+      <text class='fc-o fs-30'>￥</text>
+      <text class='fc-o fs-36'>29.8</text>
+      <text class='fs-20 td-through'>￥300</text>
+    </view>
+    <view class='fs-24 fc-999'>已售6662份</view>
+  </view>
+  <view class='between px-20 fs-24 py-30 bt'>
+    <view>发货地</view>
+    <view>发货时间</view>
+  </view>
+</view>
+<!--商品介绍  -->
+
+<view class='w-670 mb-20 relative shadow-2 margin-auto radius-4 px-20'>
+
+  <view class='py-30 center'>
+    <view class='wh-100 relative list'>
+      <image style='border:4rpx solid #fea00b' mode='aspectFill' class='wh-92 radius-full' src='/images/swiper.jpg'></image>
+      <view style='left:-10rpx;top:-6rpx;border:2rpx solid #fff' class='w-60 fs-20 bc-o fc-white text-center lh-30 radius-8 absolute'>团长</view>
+    </view>
+    <view class='wh-100 relative list'>
+      <image style='border:4rpx solid #fea00b' mode='aspectFill' class='wh-92 radius-full' src='/images/swiper.jpg'></image>
+      <view style='left:-10rpx;top:-6rpx;border:2rpx solid #fff' class='w-60 fs-20 bc-o fc-white text-center lh-30 radius-8 absolute'>团长</view>
+    </view>
+    <view class='wh-100 list'>
+      <image class='wh-100 radius-full' src='/images/group_next.png'></image>
+    </view>
+  </view>
+
+  <view class='fs-36 fw-bold text-center'>仅剩
+    <text class='fc-r'>1</text>个名额，23:53:29后结束
+  </view>
+  <view style='border:1rpx solid #fea00b' class='bc-f fs-34 fc-o lh-90 radius-30 text-center my-20'>一键参团</view>
+  <view class='fs-26 text-center'>分享到3个群后，成团率高达98%</view>
+  <view class='fs-26 bt lh-90 between'>
+    <view>拼团须知</view>
+    <view class='fc-999'>好友参团·人满发货·人不满退款</view>
+  </view>
+</view>

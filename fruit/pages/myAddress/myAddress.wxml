@@ -1,0 +1,3 @@
+<!--pages/myAddress/myAddress.wxml-->
+  <include src="/template/address/address.wxml" />
+<!--我的地址  -->

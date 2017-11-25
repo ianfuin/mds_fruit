@@ -1,0 +1,46 @@
+<view class='animated fadeIn'>
+
+  <block wx:for="{{myAddress}}" wx:key="">
+    <view class="bc-white mb-20 px-30" wx:if="{{myAddress.length!=0}}">
+      <view data-index="{{index}}" catchtap="{{confirm?'chooseAddress':''}}">
+        <view class="between py-30">
+          <view class="fs-32">{{item.userNameAddr}}</view>
+          <view class="">{{item.telephone}}</view>
+        </view>
+        <view class="pb-20">{{item.province}}{{item.city}}{{item.area}}{{item.detailAddr}}</view>
+      </view>
+      <view class="between bt h-90">
+        <view class="middle h-90" catchtap="{{item.flag==0?'setDefault':''}}" data-id="{{item.wxuserAddrId}}">
+          <icon hidden="{{item.flag==1}}" size='18' class='h-36' type="circle" color='#fed458' />
+          <icon hidden="{{item.flag==0}}" size='18' class='pulse animated h-36' type="success" color='#fed458' />
+          <view class="pl-20">设为默认</view>
+        </view>
+        <view class="between h-90">
+          <view class="middle h-90 mr-30" catchtap="editAddress" data-index="{{index}}">
+            <image style='width:32rpx;height:34rpx' src="/images/icon_3.png"></image>
+            <view class="pl-10 fs-28">编辑</view>
+          </view>
+          <view class="middle h-90" catchtap="deleteAddress" data-id="{{item.wxuserAddrId}}">
+            <image style='width:32rpx;height:34rpx' src="/images/icon_4.png"></image>
+            <view class="pl-10 fs-28">删除</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!--地址列表  -->
+
+  <view style='padding-top:280rpx' class='text-center' wx:if="{{myAddress.length==0}}">
+    <image class='wh-280 margin-auto' mode='aspectFit' src='/images/nogoods0.png'></image>
+    <view class='font-28 text-center py-60'>还没有添加收货地址哦~</view>
+    <view catchtap="addAddress" class='bc-y w-220 lh-60 margin-auto radius-30 fs-28 fc-b'>添加地址</view>
+  </view>
+  <!--没有地址  -->
+
+  <view class='h-100'></view>
+  <view catchtap="addAddress" style='left:0;bottom:0' class="fs-34 text-center lh-100 bc-white fixed w-all fc-o bt" wx:if="{{myAddress.length!=0}}">添加地址</view>
+  <!--添加地址  -->
+
+  <view wx:if="{{loginFlag}}" style='z-index:-1' class='loading bc-y'></view>
+
+</view>

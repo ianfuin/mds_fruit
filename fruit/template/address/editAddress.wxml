@@ -1,0 +1,72 @@
+<!--编辑地址-->
+
+<view class='animated fadeIn'>
+  <view class='bc-white mb-20'>
+
+    <view class="h-80 bb middle px-30">
+      <view class="w-210">收货人</view>
+      <input maxlength="11" value='{{address.name}}' focus="{{autoFocus.nameFlag}}" bindinput="inputName" placeholder="请输入收货人姓名"
+      />
+    </view>
+    <!--end 收货人-->
+
+    <view class="h-80 bb middle px-30">
+      <view class="w-210">手机号</view>
+      <input maxlength="11" value='{{address.phone}}' focus="{{autoFocus.phoneFlag}}" bindinput="inputPhone" type="number" placeholder="请输入收货人手机号码"
+      />
+    </view>
+    <!--end 联系电话-->
+
+    <view class="h-80 bb middle px-30">
+      <view class="w-210">省/直辖市</view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{address.region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          <view class='w-350'>{{address.region[0]}}</view>
+        </view>
+      </picker>
+      <image style='width:24rpx;height:16rpx;' src="/images/down.png"></image>
+    </view>
+    <!--end 省/直辖市-->
+
+    <view class="h-80 bb middle px-30">
+      <view class="w-210">市</view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{address.region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          <view class='w-350'>{{address.region[1]}}</view>
+        </view>
+      </picker>
+      <image style='width:24rpx;height:16rpx;' src="/images/down.png"></image>
+    </view>
+    <!--end 市-->
+
+    <view class="h-80 bb middle px-30">
+      <view class="w-210">区/县</view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{address.region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          <view class='w-350'>{{address.region[2]}}</view>
+        </view>
+      </picker>
+      <image style='width:24rpx;height:16rpx;' src="/images/down.png"></image>
+    </view>
+    <!--end 区/县-->
+
+    <view class="h-80 middle px-30">
+      <view class="w-210">详细地址</view>
+      <input bindinput="inputDetailedAddress" value='{{address.detailedAddress}}' focus="{{autoFocus.detailFlag}}" class="Input"
+        placeholder-class="placeholder" placeholder="请输入收货人详细地址" />
+    </view>
+    <!--end 详细地址-->
+  </view>
+
+  <view class="bc-white h-80 bt between middle px-30">
+    <view class="w-210">设为默认地址</view>
+    <view bindtap="{{setDefaultFlag?'setDefault':''}}" class='h-80 middle'>
+      <icon hidden="{{address.state}}" size='18' class='h-36' type="circle" color='#fed458' />
+      <icon hidden="{{!address.state}}" size='18' class='pulse animated h-36' type="success" color='#fed458' />
+    </view>
+  </view>
+  <!--end 设为默认地址-->
+
+  <button catchtap='saveAddress' class='btn mt-30 bc-y' data-id="{{app.param}}">保存</button>
+
+</view>

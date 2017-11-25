@@ -1,0 +1,4 @@
+/* pages/groupbuy/groupbuy.wxss */
+page{
+  background-color: #fff;
+}

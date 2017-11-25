@@ -1,0 +1,133 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="animated fadeIn h-210 between middle">
+  <view class='w-300 shrink pl-80'>
+    <view wx:if="{{orderDetail.orderType == 0}}" class="fs-34">等待买家付款</view>
+    <view wx:if="{{orderDetail.orderType == 1}}" class="fs-34">买家已付款 等待发货</view>
+    <view wx:if="{{orderDetail.orderType == 2}}">卖家已发货</view>
+    <view wx:if="{{orderDetail.orderType == 3}}">交易成功</view>
+    <view wx:if="" class="fs-34">尽快到店自取哦</view>
+    <view wx:if="" class="fs-34">团购成功 等待发货</view>
+    <view wx:if="" class="fs-34">拼团还未成功，还差1人</view>
+    <view wx:if="">卖家配送中</view>
+    <view wx:if="">拼团失败</view>
+    <view wx:if="">拼团失败 款项已原路返还</view>
+  </view>
+  <image mode='aspectFit' class='h-210' src="/images/payIcon.png"></image>
+</view>
+
+<view class="animated fadeIn bc-white mb-20 middle pr-30 py-30">
+  <view class='w-80 text-center shrink'>
+    <image class="w-38 h-44" src="/images/address_icon.png"></image>
+  </view>
+  <view class="">
+    <view class="between pb-10">
+      <view>收货人：{{orderDetail.userNameAddr}}</view>
+      <view>{{orderDetail.telephone}}</view>
+    </view>
+    <view>收货地址：{{orderDetail.address}}</view>
+  </view>
+</view>
+<!--用户地址  -->
+
+<view class="animated fadeIn bc-white px-30">
+  <view wx:for="{{orderDetail.orderdetails}}" wx:key="" class='flex bc-white py-20 bb'>
+    <image class='mr-30 wh-150 shrink' mode='aspectFill' src='/images/swiper.jpg'></image>
+    <view class='w-all'>
+      <view class='fs-30 font-bold line-1'>{{item.productName}}</view>
+      <view class='fs-22 fc-999 line-1'>{{item.remark}}</view>
+      <view class='flex between pt-20 middle'>
+        <view class='fs-30 fc-o'>
+          <text class='fs-20'>￥</text>
+          <text>{{item.realPrice}}</text>
+          <text class='fs-20'>.00</text>
+        </view>
+        <view class='fs-22'>数量 X{{item.quantity}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--订单信息  -->
+<view class="animated fadeIn bc-white px-30 py-20">
+  <view class="between fs-26 pb-10">
+    <view class="">收货方式</view>
+    <view class="">商家配送</view>
+  </view>
+  <view class="between fs-26 pb-10">
+    <view class="">快递费用</view>
+    <view class="">￥{{orderDetail.wlPrice}}.00</view>
+  </view>
+  <view wx:if="" class="between fs-26 pb-10">
+    <view class="">店铺优惠</view>
+    <view class="">-￥10.00</view>
+  </view>
+  <view class="between fs-30">
+    <view class="">需付款(含运费)</view>
+    <view class="">￥{{orderDetail.payFee}}</view>
+  </view>
+</view>
+
+<view class='animated fadeIn between h-100 bc-white mt-20'>
+  <view class='wp-50'>
+    <button class='h-all middle center fs-30 bc-white' open-type="contact">
+      <image class='w-40 h-36 mr-10' src='/images/contact_icon.png'></image>
+      <view>联系卖家</view>
+    </button>
+  </view>
+  <view class='wp-50 middle center bl' catchtap='makePhone'>
+    <image class='w-40 h-36 mr-10' src='/images/phone.png'></image>
+    <view>拨打电话</view>
+  </view>
+</view>
+<!--联系方式  -->
+
+<view class="mt-20 lh-50 bc-white pxy-30 fs-26">
+  <view>订单编号 ：{{orderDetail.outTradeNo}}</view>
+  <view class='animated fadeIn' wx:if="">支付方式 ：微信支付</view>
+  <view class='animated fadeIn' wx:if="">创建时间 ：{{orderDetail.createTime}}</view>
+  <view class='animated fadeIn' wx:if="{{orderDetail.orderType >= 1}}">付款时间 ：{{orderDetail.payTime}}</view>
+  <view class='animated fadeIn' wx:if="{{orderDetail.orderType == 3}}">成交时间 ：{{orderDetail.recordTime}}</view>
+</view>
+<view class="h-100"></view>
+
+<view wx:if="{{orderDetail.orderType == 0}}" class=" animated fadeIn lb-0 bt between bc-white fixed w-all lh-100 fs-34">
+  <view class='wp-50 text-center bc-o fc-white'>取消订单</view>
+  <view class='wp-50 text-center fc-o' catchtap='saveOrderFail'>付款</view>
+</view>
+<!--待付款  -->
+
+<view wx:if="" class=" animated fadeIn lb-0 bt between bc-white fixed w-all lh-100 fs-34">
+  <view class='wp-50 text-center fc-o'>店铺地址</view>
+  <view class='wp-50 text-center bc-o fc-white'>确认收货</view>
+</view>
+<!--到店自取  -->
+
+<view wx:if="" class=" animated fadeIn lb-0 bt between bc-white fixed w-all lh-100 fs-34">
+  <view class='wp-50 text-center fc-o'>查看物流</view>
+  <view class='wp-50 text-center bc-o fc-white'>确认收货</view>
+</view>
+<!--卖家已发货  -->
+
+<view wx:if="{{orderDetail.orderType == 2}}" class=" animated fadeIn lb-0 bt between bc-white fixed w-all lh-100 fs-34">
+  <view class='wp-50 text-center fc-o'>商家火速赶来中</view>
+  <view class='wp-50 text-center bc-o fc-white'>确认收货</view>
+</view>
+<!--卖家配送中  -->
+
+<view wx:if="" class=" animated fadeIn lb-0 bt between bc-white fixed w-all lh-100 fs-34">
+  <view class='wp-50 text-center fc-o'>删除订单</view>
+  <view class='wp-50 text-center bc-o fc-white'>前往参与新拼团</view>
+</view>
+<!--拼团失败  -->
+
+<view class=" animated fadeIn lb-0 bt bc-white fixed w-all lh-100 fs-34 text-center">
+  <view wx:if="" class='fc-white bc-o'>邀请好友拼团</view>
+  <!--待成团  -->
+  <view wx:if="{{orderDetail.orderType == 1}}" class='fc-white bc-o' catchtap='remindDelivery'>提醒卖家发货</view>
+  <!--待发货  -->
+  <view wx:if="" class='fc-o'>请耐心等待 款项将原路返还</view>
+  <!--拼团失败  -->
+  <view wx:if="{{orderDetail.orderType == 3}}" class='fc-o'>删除订单</view>
+  <!--订单已完成  -->
+</view>
+
+<view wx:if="{{orderDetail == null}}" style='z-index:1' class='loading bc-y'></view>

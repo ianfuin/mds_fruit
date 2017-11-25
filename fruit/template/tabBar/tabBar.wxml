@@ -1,0 +1,25 @@
+<!--底部导航栏  -->
+<view style='background-color: {{tabBar.backgroundColor}}' class='fixed-foot flex around w-all h-110 bt'>
+
+  <view style='width:{{100/tabBar.list.length}}%' class='text-center relative' wx:for="{{tabBar.list}}" wx:key="" data-index='{{index}}' catchtap='tabBarClick'>
+
+    <view hidden='{{tabBarIndex != index}}' class='pulse animated'>
+      <image style='display: block;margin-top:10rpx;' class='h-44 margin-auto block w-all pt-10 pb-6' mode='aspectFit' src='{{item.selectedIconPath}}'></image>
+      <!--选状态  -->
+    </view>
+
+    <view hidden='{{tabBarIndex == index}}'>
+      <image style='display: block;margin-top:10rpx;' class='h-44 margin-auto block w-all pt-10 pb-6' mode='aspectFit' src='{{item.iconPath}}'></image>
+      <!--未选中状态  -->
+    </view>
+    <!--底部导航栏图片  -->
+
+    <view style='color:{{tabBarIndex == index?tabBar.selectedColor:tabBar.color}}' class='fs-26'>{{item.text}}</view>
+    <!--底部导航栏文  -->
+
+    <view wx:if="{{item.pagePath == 'shopCar'&&shopCarNum!= 0}}" style='top:10rpx;right:24%' class='absolute bc-r fc-white radius-full text-center wh-34 fs-14'>{{shopCarNum}}</view>
+    <!--购物车数量  -->
+
+  </view>
+
+</view>

@@ -1,0 +1,61 @@
+<!--pages/search/search.wxml-->
+<view class='bc-white h-all'>
+
+  <view class='h-100 bc-f4f4f4 px-30 between middle bb'>
+    <view class='middle w-540' style='border-bottom:2rpx solid #8d8e92'>
+      <image class='wh-34 shrink' mode='aspectFill' src='/images/search.png'></image>
+      <input maxlength='10' bindinput='searchText' class='w-all ml-10 fs-32' placeholder='输入关键词搜索'></input>
+    </view>
+    <view class='bc-y w-120 lh-60 text-center radius-30' catchtap='searchGoods'>搜索</view>
+  </view>
+  <!--搜索  -->
+
+  <view wx:if="{{!searchFlag}}" class='pxy-30'>
+    <view class='fs-30'>热门推荐</view>
+    <view class='warp search'>
+      <view wx:for="{{hotList}}" wx:key="" catchtap='searchByKeyWords' data-keyword='{{item.keyword}}' class='bc-f5f5f5 radius-30 px-40 py-10'>{{item.keyword}}</view>
+    </view>
+  </view>
+  <!--热门推荐  -->
+
+  <block wx:if="{{searchList.length != 0}}">
+    <block wx:for="{{searchList}}" wx:key="">
+      <view class='flex bc-white bt pxy-30'>
+        <image class='mr-30' style='height:210rpx;width:230rpx' mode='aspectFill' src='{{ImgUrl+item.productImg}}'></image>
+        <view class='w-430'>
+          <view class='pt-20'>
+            <view class='fs-30 font-bold line-1'>{{item.productName}}</view>
+            <view class='fs-22 fc-999 line-1'>{{item.remark}}</view>
+          </view>
+          <view class='flex between pt-30 middle'>
+            <view>
+              <view class='fs-30 fc-o'>￥{{item.realPrice}}</view>
+              <view class='fs-20'>{{item.spec}}</view>
+            </view>
+            <image wx:if="{{!flag}}" class='wh-66 swing animated' src='/images/ocar.png'></image>
+            <view wx:if="{{flag}}" class='flex middle around flipInX animated w-220'>
+              <image catchtap='showColum' class='wh-40' src='/images/reduce.png'></image>
+              <view>1</view>
+              <image catchtap='showColum' class='wh-40' src='/images/add.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class='h-120 around middle'>
+      <view class='w-220 bt'></view>
+      <view class='fs-30'>没有更多了</view>
+      <view class='w-220 bt'></view>
+    </view>
+    <!--没有更多了  -->
+  </block>
+  <!--商品列表  -->
+
+  <view wx:if="{{searchList.length == 0}}" class='text-center' style='margin-top:200rpx'>
+    <image class='wh-280 margin-auto' mode='aspectFit' src='/images/nogoods1.png'></image>
+    <view class='font-28 text-center py-40'>抱歉，没有相关产品</view>
+    <view class='bc-o w-220 lh-60 margin-auto radius-30 fs-28 fc-b' catchtap='indexPage'>随便逛逛</view>
+  </view>
+  <!--没有商品  -->
+
+</view>

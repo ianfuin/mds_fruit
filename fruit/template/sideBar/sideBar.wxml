@@ -1,0 +1,77 @@
+<!-- sideBar.wxml 侧滑栏-->
+
+<view style='z-index:2;top:0;left:{{showSideBar?"0":"-1000rpx"}}' class='w-600 bc-white h-all fixed transition'>
+  <view class='w-600 h-all of-auto'>
+
+    <view class='animated fadeIn' wx:if="{{slideBarSwiperImg.length >0}}">
+      <swiper style='height:370rpx' indicator-dots indicator-active-color="#fff" interval="5000" duration="1500" autoplay circular>
+        <block wx:for="{{classSwiperImg}}" wx:key="">
+          <swiper-item>
+            <image class='w-all' mode='aspectFill' src='/images/swiper.jpg'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!--轮播图片-->
+
+    <view class='fs-40 px-20 pt-40'>店铺名称XX水果店</view>
+    <view class='between px-20 middle bb h-66 pt-20 fs-28' catchtap='showIntr'>
+      <view class='w-210 middle'>
+        <image class='wh-66' src='/images/icon0.png'></image>
+        <view>简介</view>
+      </view>
+      <view class='h-20 transition' style='{{showIntr?"":"transform:rotate(-90deg)"}}'>
+        <image class='left_icon block' src='/images/left_icon.png'></image>
+      </view>
+    </view>
+    <view class='bc-f4f4f4 fs-28 of-hidden {{showIntr?"h-0":"pxy-20"}}'>
+      深百果园实业发展有限公司成立于2001 年百果园创始人余惠勇在90年代开展水果贸 易过程中发现水果行业整个供应链上价值损 耗浪费巨大，特别是中国是世界水果产量大国 但水果附加价值很低。在全球范围内，还没有 企业整合资源发展水果专营连锁业态感觉有 发展空间和价值挖掘潜力。
+    </view>
+    <!--简介  -->
+    <view class='between px-20 middle bb h-66 pt-20 fs-28' catchtap='openLocation'>
+      <view class='w-210 middle'>
+        <image class='wh-66' src='/images/icon1.png'></image>
+        <view>地址</view>
+      </view>
+      <view class='middle'>
+        <view class='fc-999 w-300 line-1'>荆州市沙市区江汉北路荆州市沙市区江汉北路</view>
+        <image class='left_icon ml-20' src='/images/left_icon.png'></image>
+      </view>
+    </view>
+    <!--地址  -->
+    <view class='between px-20 middle bb h-66 pt-20 fs-28' catchtap='makePhoneCall'>
+      <view class='w-210 middle'>
+        <image class='wh-66' src='/images/icon2.png'></image>
+        <view>联系电话</view>
+      </view>
+      <view class='middle'>
+        <view class='fc-999'>18058505737</view>
+        <image class='left_icon ml-20' src='/images/left_icon.png'></image>
+      </view>
+    </view>
+    <!--联系电话  -->
+    <view class='between px-20 middle bb h-66 pt-20 fs-28'>
+      <view class='w-210 middle'>
+        <image class='wh-66' src='/images/icon3.png'></image>
+        <view>营业时间</view>
+      </view>
+      <view class='fc-999'>08:00-22:00</view>
+    </view>
+    <!--营业时间  -->
+
+    <view class='middle between my-30 px-30'>
+      <image catchtap='previewImage' mode='aspectFill' class='wh-180' src='/images/swiper.jpg'></image>
+      <view class='fs-28 text-center'>
+        <view>可添加店主微信联系</view>
+        <view class='bc-y radius-30 pxy-10' catchtap='previewImage'>点击二维码后长按识别</view>
+      </view>
+    </view>
+    <!--二维码  -->
+
+    <view class='h-110'></view>
+  </view>
+</view>
+<!--侧边栏-->
+<view style='{{hidModel?"":"z-index:1"}};background-color:rgba(0,0,0,0.5)' class='w-all lt-0 h-all fixed animated {{showSideBar?"fadeIn":"fadeOut"}}' catchtap='hidSideBar'>
+</view>
+<!--模态背景  -->

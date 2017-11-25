@@ -1,0 +1,4 @@
+/* pages/goodsDetail/goodsDetail.wxss */
+page{
+  background-color: #fff;
+}

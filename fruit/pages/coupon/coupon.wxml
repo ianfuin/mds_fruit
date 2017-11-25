@@ -1,0 +1,27 @@
+<!--pages/coupon/coupon.wxml-->
+
+<view class='w-700 h-200 relative margin-auto mt-30 shadow-2 radius-10'>
+  <image class='w-700 h-200' src='/images/coupon2.png'></image>
+  <view style='top:0;left:0' class='absolute w-700 h-200 fc-white'>
+    <view class='pl-20 py-40'>
+      <text class='fs-26'>￥</text>
+      <text class='fs-58'>40</text>
+    </view>
+    <view class='fs-22 pl-20 lh-30'>满400使用</view>
+    <view class='fs-22 pl-20 lh-30'>有效期 2017.03.27-2017.03.29</view>
+  </view>
+</view>
+<!--满减  -->
+
+<view class='w-700 h-200 relative margin-auto mt-30 shadow-2 radius-10'>
+  <image class='w-700 h-200' src='/images/coupon3.png'></image>
+  <view style='top:0;left:0' class='absolute w-700 h-200 fc-white'>
+    <view class='pl-20 py-40'>
+      <text class='fs-58'>8.5</text>
+      <text class='fs-24'>折</text>
+    </view>
+    <view class='fs-22 pl-20 lh-30'>满400使用</view>
+    <view class='fs-22 pl-20 lh-30'>有效期 2017.03.27-2017.03.29</view>
+  </view>
+</view>
+<!--满折  -->

@@ -1,0 +1,116 @@
+<!--我的订单  -->
+<view class='animated fadeIn'>
+
+  <view class='fs-26 fixed z-1 w-all'>
+    <scroll-view class='h-100 bc-white' scroll-x scroll-into-view="{{navId}}" scroll-with-animation>
+      <view class="between">
+        <block wx:for="{{navList}}" wx:key="">
+          <view id='nav{{index}}' data-index="{{index}}" catchtap="clickNav" class="center around h-100 middle w-150 shrink relative">
+            <view id="{{item.id}}" class="">{{item.text}}</view>
+            <view hidden='{{index != navIndex}}' style='bottom:0' class='absolute h-4 bc-o w-100'></view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <!--顶部导航栏  -->
+
+  <swiper style='height:{{windowHeight}}px' current="{{swiperIndex}}" bindchange="swiperChange">
+    <view style="height:120rpx;"></view>
+    <block wx:for="{{orderList}}" wx:key="" wx:for-index="listIndex">
+      <swiper-item class='of-auto'>
+        <block wx:for="{{item}}" wx:for-item="orderItem" wx:key="">
+          <block wx:if="{{lazyList[listIndex]}}">
+            <view class='bc-white px-30 mb-20 animated fadeIn'>
+              <view class='fs-26 fc-o text-right lh-80 bb'>
+                <block wx:if="{{listIndex == 0}}">等待买家付款</block>
+                <!--待付款  -->
+                <block wx:if="">拼团中，差1人</block>
+                <!--待成团  -->
+                <block wx:if="{{listIndex == 1}}">提醒卖家发货</block>
+                <!--待发货  -->
+                <block wx:if="{{listIndex == 2}}">
+                  <text>卖家已发货</text>
+                  <text wx:if="">请及时到店取货</text>
+                </block>
+                <!--待收货  -->
+                <block wx:if="{{listIndex == 3}}">交易成功</block>
+                <!--已完成  -->
+                <block wx:if="">
+                  <text>拼团失败，款项将原路返还</text>
+                  <text>拼团失败，款项已原路返还</text>
+                </block>
+                <!--售后退款  -->
+              </view>
+              <!--订单状态  -->
+              <view catchtap='orderDetail' data-orderid='{{orderItem.orderId}}' wx:for="{{orderItem.orderdetails}}" wx:key="" wx:for-item="order" class='flex bc-white bb py-20'>
+                <image class='mr-30 wh-150 shrink' mode='aspectFill' src='/images/swiper.jpg'></image>
+                <view class='w-all'>
+                  <view class='fs-30 font-bold line-1'>{{order.productName}}</view>
+                  <view class='fs-22 fc-999 line-1'>{{order.remark}}</view>
+                  <view class='flex between pt-20 middle'>
+                    <view class='fs-30 fc-o'>
+                      <text class='fs-20'>￥</text>
+                      <text>{{order.realPrice}}</text>
+                      <text class='fs-20'>.00</text>
+                    </view>
+                    <view class='fs-22'>数量 X{{order.quantity}}</view>
+                  </view>
+                </view>
+              </view>
+              <!--订单信息  -->
+              <view class='text-right lh-80 fs-24 bb'>共{{orderItem.orderdetails.length}}件商品 合计：￥
+                <text class='fs-28'>{{orderItem.payFee}}</text>
+                <text class='fs-28'>(含运费￥{{orderItem.wlPrice}}.00)
+              </text>
+              </view>
+              <!--订单价格  -->
+              <view class='end py-20 fs-28'>
+                <block wx:if="{{listIndex == 0}}">
+                  <view class='b btn-auto'>取消订单</view>
+                  <button open-type='contact' class='b btn-auto bc-white'>联系卖家</button>
+                  <view class='b btn-auto bc-o fc-white' data-orderid='{{orderItem.orderId}}' catchtap="saveOrderFail">付款</view>
+                </block>
+                <!--待付款  -->
+                <block wx:if="">
+                  <view class='b btn-auto bc-o fc-white'>邀请好友拼团</view>
+                </block>
+                <!--待成团  -->
+                <block wx:if="{{listIndex == 1}}">
+                  <view class='b btn-auto bc-o fc-white' catchtap="remindDelivery">提醒卖家发货</view>
+                </block>
+                <!--待发货  -->
+                <block wx:if="{{listIndex == 2}}">
+                  <view class='b btn-auto' data-orderdetails="{{orderItem.orderdetails}}" data-code='{{orderItem.wlCode}}' data-wlnum='{{orderItem.wlNum}}' catchtap='shipDetail'>查看物流</view>
+                  <button open-type='contact' class='b btn-auto bc-white'>联系卖家</button>
+                  <view class='b btn-auto'>店铺地址</view>
+                  <view class='b btn-auto bc-o fc-white'>确认收货</view>
+                </block>
+                <!--待收货  -->
+                <block wx:if="{{listIndex == 3}}">
+                  <view class='b btn-auto'>删除订单</view>
+                </block>
+                <!--已完成  -->
+                <block wx:if="">
+                  <button open-type='contact' class='b btn-auto bc-white'>联系卖家</button>
+                  <view class='b btn-auto'>删除订单</view>
+                </block>
+                <!--售后退款  -->
+              </view>
+              <!--订单操作  -->
+            </view>
+            <!--订单列表  -->
+          </block>
+        </block>
+        <view wx:if="{{item.length == 0}}" class='text-center' style='padding-top:30%'>
+          <image class='wh-280 margin-auto' mode='aspectFit' src='/images/nogoods1.png'></image>
+          <view class='font-28 text-center py-60'>还没有相关订单哦~</view>
+          <view catchtap='indexPage' class='bc-o w-220 lh-60 margin-auto radius-30 fs-28 fc-b'>前往首页</view>
+        </view>
+        <!--没有商品  -->
+        <view class='h-120'></view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--订单滑块  -->
+</view>

@@ -1,0 +1,253 @@
+<!--pages/goodsDetail/goodsDetail.wxml-->
+<scroll-view wx-if="{{goodDetail != null}}" class='bc-white' scroll-y style='height:{{windowHeight}}px'>
+
+  <view class='animated fadeIn mx-20' wx:if="{{indexSwiperImg.length >0}}">
+    <swiper style='height:510rpx' indicator-dots indicator-active-color="#fff" interval="5000" duration="1500" autoplay circular>
+      <block wx:for="{{indexSwiperImg}}" wx:key="">
+        <swiper-item>
+        <view class='text-center w-all'>
+          <image class='w-500' mode='widthFix' src='{{item}}'></image>
+        </view>
+          <!-- <image class='w-all' mode='aspectFill' src='{{imgUrl}}{{item.posterImg}}'></image> -->
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!--轮播图片-->
+
+  <view class='w-710 mb-20 relative shadow-2 margin-auto radius-4'>
+    <view wx:if="" class='flex middle absolute tr-0'>
+      <view class='relative w-80 h-66 fc-white middle center'>
+        <view class='absolute lt-0'>
+          <image class='w-40 h-66' src='/images/timer.png'></image>
+          <image class='w-40 h-66' src='/images/timer.png'></image>
+        </view>
+        <view style='letter-spacing: 24rpx;margin-left:24rpx' class='fc-white z-1'>11</view>
+      </view>
+      <view>:</view>
+      <view class='relative w-80 h-66 fc-white middle center'>
+        <view class='absolute lt-0'>
+          <image class='w-40 h-66' src='/images/timer.png'></image>
+          <image class='w-40 h-66' src='/images/timer.png'></image>
+        </view>
+        <view style='letter-spacing: 24rpx;margin-left:24rpx' class='fc-white z-1'>11</view>
+      </view>
+      <view>:</view>
+      <view class='relative w-80 h-66 fc-white middle center'>
+        <view class='absolute lt-0'>
+          <image class='w-40 h-66' src='/images/timer.png'></image>
+          <image class='w-40 h-66' src='/images/timer.png'></image>
+        </view>
+        <view style='letter-spacing: 24rpx;margin-left:24rpx' class='fc-white z-1'>11</view>
+      </view>
+    </view>
+    <!--倒计时  -->
+
+    <view class='between middle pt-50 pl-20'>
+      <view class='fw-bold fs-36'>{{goodDetail.productName}}</view>
+      <view wx:if="" class='fs-26 lh-60 bc-o fc-white pr-20 pl-40 radius_left_40'>2人团</view>
+    </view>
+    <view class='fs-32 py-20 px-20 '>{{goodDetail.spec}}</view>
+    <view class='fs-22 fc-999 pb-20 px-20 '>{{goodDetail.remark}}</view>
+    <view class='between px-20  pb-20'>
+      <view>
+        <text class='fc-o fs-30'>￥</text>
+        <text class='fc-o fs-36'>{{goodDetail.realPrice}}</text>
+        <text class='fs-20 td-through'>￥{{goodDetail.fakePrice}}</text>
+      </view>
+      <view class='fs-24 fc-999'>已售{{goodDetail.realSale}}份</view>
+    </view>
+    <view class='between px-20 fs-24 py-30 bt'>
+      <view>发货地:{{goodDetail.sendPlace}}</view>
+      <view>发货时间:{{goodDetail.sendDate}}</view>
+    </view>
+  </view>
+  <!--商品介绍  -->
+
+  <view wx:if="" class='w-710 shadow-2 margin-auto radius-4 mb-20 py-14'>
+    <view class='between pr-30'>
+      <view class='flex'>
+        <view style='min-width:40rpx;' class='bc-o h-36 fs-26 fc-white pl-30 pr-10'>65人正在开团</view>
+        <image class='w-32 h-36' src='/images/tab_icon.png'></image>
+      </view>
+      <view class='fs-24 fc-999 end middle' catchtap='showModel'>
+        <view>查看更多</view>
+        <image class='left_icon ml-10' src='/images/left_icon.png'></image>
+      </view>
+    </view>
+    <view class='px-20'>
+      <view class='around middle bb py-20'>
+        <image class='wh-90 radius-full' mode='aspectFill' src='/images/swiper.jpg'></image>
+        <view>
+          <view class='fs-24'>云彩飞扬</view>
+          <view class='fs-22 fc-999'>还差1人，剩余23:48:39</view>
+        </view>
+        <view style='border:1rpx solid #fea00b' class='w-130 fs-26 lh-60 h-60 text-center fc-o radius-30 px-10'>去参团</view>
+      </view>
+      <view class='around middle bb py-20'>
+        <image class='wh-90 radius-full' mode='aspectFill' src='/images/swiper.jpg'></image>
+        <view>
+          <view class='fs-24'>云彩飞扬</view>
+          <view class='fs-22 fc-999'>还差1人，剩余23:48:39</view>
+        </view>
+        <view style='border:1rpx solid #fea00b' class='w-130 fs-26 lh-60 h-60 text-center fc-o radius-30 px-10'>去参团</view>
+      </view>
+      <view class='around middle py-20'>
+        <image class='wh-90 radius-full' mode='aspectFill' src='/images/swiper.jpg'></image>
+        <view>
+          <view class='fs-24'>云彩飞扬</view>
+          <view class='fs-22 fc-999'>还差1人，剩余23:48:39</view>
+        </view>
+        <view style='border:1rpx solid #fea00b' class='w-130 fs-26 lh-60 h-60 text-center fc-o radius-30 px-10'>去参团</view>
+      </view>
+    </view>
+    <!--开团列表  -->
+  </view>
+  <!--正在开团  -->
+
+  <block wx:if="{{showModel}}">
+    <view style='left:0;right:0;top:30%;z-index:10' class='w-630 bc-white px-10 fixed animated {{showModel?"fadeIn":"fadeOut"}} margin-auto radius-6'>
+      <view class='relative'>
+        <view class='fs-26 fw-bold text-center py-30'>正在开团</view>
+        <icon style='top:-22rpx;right:-22rpx;' class='absolute' color='#fed458' type='clear' catchtap='showModel'></icon>
+        <view class='around middle bb py-20'>
+          <image class='wh-90 radius-full' mode='aspectFill' src='/images/swiper.jpg'></image>
+          <view>
+            <view class='fs-24'>云彩飞扬</view>
+            <view class='fs-22 fc-999'>还差1人，剩余23:48:39</view>
+          </view>
+          <view style='border:1rpx solid #fea00b' class='w-130 fs-26 lh-60 h-60 text-center fc-o radius-30 px-10'>去参团</view>
+        </view>
+        <view class='around middle bb py-20'>
+          <image class='wh-90 radius-full' mode='aspectFill' src='/images/swiper.jpg'></image>
+          <view>
+            <view class='fs-24'>云彩飞扬</view>
+            <view class='fs-22 fc-999'>还差1人，剩余23:48:39</view>
+          </view>
+          <view style='border:1rpx solid #fea00b' class='w-130 fs-26 lh-60 h-60 text-center fc-o radius-30 px-10'>去参团</view>
+        </view>
+        <view class='around middle bb py-20'>
+          <image class='wh-90 radius-full' mode='aspectFill' src='/images/swiper.jpg'></image>
+          <view>
+            <view class='fs-24'>云彩飞扬</view>
+            <view class='fs-22 fc-999'>还差1人，剩余23:48:39</view>
+          </view>
+          <view style='border:1rpx solid #fea00b' class='w-130 fs-26 lh-60 h-60 text-center fc-o radius-30 px-10'>去参团</view>
+        </view>
+        <!--开团列表  -->
+        <view class='text-center py-30 fs-22 fc-999'>往下滑动查看更多拼团的人</view>
+      </view>
+    </view>
+  </block>
+  <!--更多开团  -->
+
+  <view class='w-710 shadow-2 margin-auto radius-4 mb-20 py-14'>
+    <view class='flex'>
+      <view style='min-width:40rpx;' class='bc-o h-36 fs-26 fc-white pl-30 pr-10'>亮点</view>
+      <image class='w-32 h-36' src='/images/tab_icon.png'></image>
+    </view>
+    <view class='w-610 margin-auto relative shadow-1 my-20'>
+      <view style='left:-10rpx' class='h-6 bc-o between middle absolute w-630'>
+        <view class='wh-10 bc-o radius-30'></view>
+        <view class='wh-10 bc-o radius-30'></view>
+      </view>
+      <!--列表头部  -->
+      <view class='px-20'>
+        <view class='flex middle bb py-20'>
+          <view class='wh-10 bc-o radius-30'></view>
+          <view> “梨城”人们最为之骄傲的产物</view>
+        </view>
+        <view class='flex middle bb py-20'>
+          <view class='wh-10 bc-o radius-30'></view>
+          <view> “梨城”人们最为之骄傲的产物</view>
+        </view>
+        <view class='flex middle py-20'>
+          <view class='wh-10 bc-o radius-30'></view>
+          <view> “梨城”人们最为之骄傲的产物</view>
+        </view>
+      </view>
+      <!--两点列表  -->
+      <view style='bottom:-2rpx' class='around absolute w-all'>
+        <block wx:for="[1,2,3,4,5,6,7,8,9,1,1,1,1,1,1,1,1]" wx:key="">
+          <view style='background:#eaeaea' class='wh-10 radius-30'></view>
+        </block>
+      </view>
+      <!--列表底部  -->
+    </view>
+  </view>
+  <!--商品亮点  -->
+
+  <view class='w-710 shadow-2 margin-auto radius-4 mb-20 py-14'>
+    <view class='flex'>
+      <view style='min-width:40rpx;' class='bc-o h-36 fs-26 fc-white pl-30 pr-10'>规格详情</view>
+      <image class='w-32 h-36' src='/images/tab_icon.png'></image>
+    </view>
+    <view class='px-40'>
+      <view class='py-20 bb'>规格：{{goodDetail.spec}}</view>
+      <view class='py-20 bb'>重量：10个1000g起</view>
+      <view class='py-20 bb'>包装：普装</view>
+      <view class='py-20 bb'>保质期：尽快享用</view>
+      <view class='py-20'>贮存方法：冷藏</view>
+    </view>
+  </view>
+  <!--规格详情  -->
+
+  <view class='w-710 shadow-2 of-auto margin-auto radius-4 mb-20 mb-20 relative'>
+    <view class='flex absolute' style='z-index:5;top:20rpx'>
+      <view style='min-width:40rpx;' class='bc-o h-36 fs-26 fc-white pl-30 pr-10'>图文详情</view>
+      <image class='w-32 h-36' src='/images/tab_icon.png'></image>
+    </view>
+    <rich-text></rich-text>
+    <image style='top:0' class='w-all radius-4' mode='widthFix' src='/images/1111.jpg'></image>
+  </view>
+  <!--图文详情  -->
+
+    <view catchtap='mds' capture-bind:touchstart="touchstart" capture-bind:touchend="touchend" class='fs-24 fc-b2b2b2 text-center w-all py-30'>超级棱镜提供技术支持superprism.cn</view>
+  <!--打标  -->
+
+  <view class='h-100'></view>
+
+  <view style='z-index:10' class='flex h-100 fixed lb-0 w-all bc-white'>
+    <button class='bc-white br bt middle center w-140 shrink' open-type="contact">
+      <image class='wh-60' src='/images/contact.png'></image>
+    </button>
+    <view class='w-140 shrink bt br middle center'>
+      <image class='wh-60' src='/images/carIcon.png' catchtap="ToShopcar"></image>
+      <view hidden="{{carNum == 0}}" style='top:14rpx;right:24rpx' class='absolute bc-o fc-white radius-10 lh-30 px-14 fs-20'>{{carNum >99?'99+':carNum}}</view>
+    </view>
+    <view class='bc-white bt w-all'>
+      <button hidden="{{showColum}}" catchtap='showColum' class='bc-o fc-white w-all pulse animated lh-100'>加入购物车</button>
+      <view hidden="{{!showColum}}" class='flex middle around px-30 h-all flipInX animated'>
+        <image catchtap='changeShopCar' data-flag='-1' class='wh-50' src='/images/reduce.png'></image>
+        <view>{{carNum}}</view>
+        <image catchtap='changeShopCar' data-flag='1' class='wh-50' src='/images/add.png'></image>
+      </view>
+      <!--加减按钮  -->
+    </view>
+    <!--普通购买  -->
+
+    <view wx:if="" class='bc-white bt w-all flex text-center'>
+      <!-- <button class='wp-50 bc-y fc-white'>
+        <view class='fs-28 pt-10'>￥300</view>
+        <view>单独购买</view>
+      </button> -->
+      <view class='flex middle around wp-50 px-30 h-all flipInX animated'>
+        <image catchtap='changeShopCar' data-flag='-1' class='wh-40' src='/images/reduce.png'></image>
+        <view>{{carNum}}</view>
+        <image catchtap='changeShopCar' data-flag='1' class='wh-40' src='/images/add.png'></image>
+      </view>
+      <!--加减按钮  -->
+      <button class='wp-50 bc-o fc-white'>
+        <view class='fs-28 pt-10'>￥{{Number==1 ? RealPrice : Total}}</view>
+        <view>单独购买</view>
+      </button>
+    </view>
+    <!--拼团  -->
+
+  </view>
+  <!--底部操作  -->
+
+  <view style='{{showModel?"":"z-index:-1"}}' class='bg animated {{showModel?"fadeIn":"fadeOut"}}'></view>
+</scroll-view>
+
+<view wx:if="{{goodDetail === null}}" style='z-index:-1' class='loading bc-y'></view>

@@ -1,0 +1,8 @@
+<!--pages/mds/mds.wxml-->
+
+<view wx:if="{{showFlag}}" class='relative animated fadeIn'>
+  <image bindload="imgLoad" mode='widthFix' class='w-all block' src='/images/mds.jpg'></image>
+  <view catchtap='makePhone' style='padding-bottom:120rpx;bottom:0' class='fs-50 text-center w-all fc-white absolute'>{{mdsPhoneNumber}}</view>
+</view>
+
+<image wx:if="{{!showFlag}}" bindload="imgLoad" mode='widthFix' style='width:0;height:0' src='/images/mds.jpg'></image>

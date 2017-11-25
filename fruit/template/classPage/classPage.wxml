@@ -1,0 +1,66 @@
+<view class='animated fadeIn h-all w-all'>
+  <scroll-view scroll-y="{{scrollY}}" style='height:{{windowHeight}}px' bindscroll="scrollView" scroll-top="{{scrollTop}}" scroll-with-animation>
+    <!--     <view style='z-index:10' class='animated fadeIn w-all relative' wx:if="{{classSwiperImg.length >0}}">
+      <swiper style='height:370rpx' indicator-dots indicator-active-color="#fff" interval="5000" duration="1500" autoplay circular>
+        <block wx:for="{{classSwiperImg}}" wx:key="">
+          <swiper-item>
+            <image class='w-all' mode='aspectFill' src='/images/swiper.jpg'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>     -->
+    <!--轮播图片-->
+    <view style='z-index:10' class='h-110 w-all bc-white middle fixed bb'>
+      <view class='w-150 h-110 text-center shrink shadow-x middle center' catchtap="clickSearch">
+        <image class='wh-64' src='/images/search_btn.png'></image>
+      </view>
+      <scroll-view style="width:600rpx" class='h-110' scroll-x scroll-into-view="{{navId}}" scroll-with-animation>
+        <view class='middle h-all w-all titleList mx-20 px-20'>
+          <block wx:for="{{classList}}" wx:key="">
+            <view id='nav{{index}}' class='w-150 transition lh-62 shrink text-center radius-30 fs-26 {{current == index?"bc-y fw-bold":""}}' data-index='{{index}}' catchtap="{{current == index?'':'clickClassList'}}">{{item.categoryName}}</view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <!--分类列表  -->
+
+    <swiper style='height:{{windowHeight}}px' current="{{swiperIndex}}" bindchange="swiperChange">
+      <view class='h-120'></view>
+      <block wx:for="{{lazyList}}" wx:key="" wx:for-item="lazyItem">
+        <swiper-item class='of-auto'>
+          <view wx:if="{{lazyItem}}" class='animated fadeIn'>
+            <view wx:for="{{goodLlist[current]}}" wx:key="" class='flex bc-white bb pxy-30' catchtap="goodsDetail" data-id="{{item.productId}}">
+              <image class='mr-30' style='height:210rpx;width:230rpx' mode='aspectFill' src='{{imgUrl}}{{item.productImg}}'></image>
+              <view class='w-430'>
+                <view class='pt-20'>
+                  <view class='fs-30 font-bold line-1'>{{item.productName}}</view>
+                  <view class='fs-22 fc-999 line-1'>{{item.remark}}</view>
+                </view>
+                <view class='flex between pt-30 middle'>
+                  <view>
+                    <view class='fs-30 fc-o'>￥{{item.realPrice}}</view>
+                    <view class='fs-20'>{{item.spec}}</view>
+                  </view>
+                  <image wx:if="{{!flag}}" class='wh-66 swing animated' src='/images/ycar.png' catchtap='showColum' data-id="{{item.productId}}"></image>
+                  <view wx:if="{{flag}}" class='flex middle around flipInX animated w-220'>
+                    <image catchtap='showColum' class='wh-40' src='/images/reduce.png'></image>
+                    <view>1</view>
+                    <image catchtap='showColum' class='wh-40' src='/images/add.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class='h-120 w-all around middle'>
+              <view class='w-220 bb'></view>
+              <view class='fs-30'>没有更多了</view>
+              <view class='w-220 bb'></view>
+            </view>
+            <!--没有更多了  -->
+            <view class='h-110 w-all'></view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--商品列表  -->
+  </scroll-view>
+</view>

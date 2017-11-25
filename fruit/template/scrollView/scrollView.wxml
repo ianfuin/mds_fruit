@@ -1,0 +1,10 @@
+<template name="scrollView">
+  <view class='flex h-84 middle around px-30 bc-white py-10'>
+      <image class='w-30 h-28' mode='aspectFill' src='/images/voice.png'></image>
+    <view class='relative fs-26 w-600 hall of-hidden'>
+      <view class='absolute lh-84' style="top:-{{top}}px" capture-catch:touchstart="endScroll" capture-catch:touchend="starScroll">
+        <view wx:for="{{scrollData}}" wx:key="" class='scrollViewList line-1 h-84'>西瓜西瓜今天半价，活动在今天下午16 : 0{{index}}结束，抓紧时间抓紧时间抓紧时间抓紧时间抓紧时间</view>
+      </view>
+    </view>
+  </view>
+</template>
