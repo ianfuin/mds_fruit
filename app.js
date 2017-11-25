@@ -1,5 +1,5 @@
-/*const Koa = require('koa');
-const serve = require('koa-static');*/
+const Koa = require('koa');
+const serve = require('koa-static');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -53,6 +53,6 @@ const hostname = '192.168.1.146';//私有ip
 
 
 app.use(serve(__dirname + '/static'));
-// app.use(staticFiles( __dirname + '/static'));
+app.use(staticFiles( __dirname + '/static'));
 app.listen(port,hostname)
 console.log('app started at port '+hostname+':'+port);
