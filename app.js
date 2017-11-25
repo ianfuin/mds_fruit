@@ -45,7 +45,7 @@ db.once('open', function () {
 });
 
 
-/*const app = new Koa();
+const app = new Koa();
 let staticFiles = require('./static-files');
 
 const port = 80;//端口号
@@ -55,4 +55,4 @@ const hostname = '192.168.1.146';//私有ip
 app.use(serve(__dirname + '/static'));
 // app.use(staticFiles( __dirname + '/static'));
 app.listen(port,hostname)
-console.log('app started at port '+hostname+':'+port);*/
+console.log('app started at port '+hostname+':'+port);
