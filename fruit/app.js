@@ -120,10 +120,10 @@ App({
         'signType': payData.signType,
         'paySign': payData.paySign,
         'success': function (res) {
-          resolve(res)
+          resolve(res);
         },
         'fail': function (res) {
-          reject(res)
+          reject(res);
         }
       })
     })
