@@ -274,6 +274,4 @@ App({
 
     return time;
   }
-
-
 })
